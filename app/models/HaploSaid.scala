@@ -7,7 +7,7 @@ import org.joda.time._
 
 //A HaploSaid table storing shit haplo says.
 class HaploSaid(tag: Tag)
-  extends Table[( Int, String, DateTime )]( tag, "HAPPLOSAID" ){
+  extends Table[( Int, String, DateTime )]( tag, "HaploSaid" ){
 
     def id          = column[Int]( "id", O.PrimaryKey )
     def what_said   = column[String]( "what_said" )
