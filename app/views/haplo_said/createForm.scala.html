@@ -1,0 +1,13 @@
+@(haploSaidForm: Form[HaploSaid] )
+
+@helper.form( action =  routes.HaploSaidController.submit ){
+  @helper.textarea( haploSaidForm( "what_said" ),
+    'class -> "form-control",  '_label -> "What he said")
+  @helper.inputText( haploSaidForm( "context_note" ),
+    'class -> "form-control", '_label -> "Note about context")
+
+  <div class="actions">
+    <input type="submit" value="Save this Shit Haplo Said"
+        class="btn btn-primary pull-right" />
+  </div>
+}

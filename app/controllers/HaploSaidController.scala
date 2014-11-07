@@ -21,7 +21,11 @@ object HaploSaidController extends Controller {
   def index = DBAction {  implicit rs =>
     val shit_haplo_said = haplo_said.sortBy( _.created_at.desc ).take( 15 ).list
     //replace this with pagination
-    Ok( views.html.haplo_said.index( shit_haplo_said ) )
+    Ok( views.html.haplo_said.index( shit_haplo_said, haploSaidForm ) )
+  }
+
+  def submit = DBAction { implicit rs =>
+    Redirect( routes.HaploSaidController.index )
   }
 
   /**
