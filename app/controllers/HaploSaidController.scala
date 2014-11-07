@@ -26,6 +26,7 @@ object HaploSaidController extends Controller {
   }
 
   def submit = DBAction { implicit rs =>
+    Logger.info( rs.toString )
     val haploData = haploSaidForm.bindFromRequest.get
     haplo_said.insert( HaploSaid.unapply( haploData ).get )
     Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
@@ -39,8 +40,8 @@ object HaploSaidController extends Controller {
       "id" -> optional(number),
       "what_said" -> nonEmptyText, 
       "context_note" -> optional(text),
-      "created_at" ->  jodaDate
-    )(HaploSaid.apply)(HaploSaid.unapply)
+      "created_at" ->  optional(jodaDate)
+    )(HaploSaid.apply)(HaploSaid.unapply _ )
   )
 
 }

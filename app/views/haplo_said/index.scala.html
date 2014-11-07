@@ -1,4 +1,4 @@
-@(shitHaploSaid : List[(Option[Int], String, Option[String], org.joda.time.DateTime)],
+@(shitHaploSaid : List[(Option[Int], String, Option[String], Option[org.joda.time.DateTime])],
   haploSaidForm: Form[HaploSaid] )
 
 @import helper._
@@ -18,7 +18,7 @@
                 <h3 class="panel-title">
                   Haplo Said...
                   <div class="pull-right">
-                    @when_said.toDate.format( "yyyy-MM-dd" )
+                    @when_said
                   </div>
                 </h3>
               </div>
