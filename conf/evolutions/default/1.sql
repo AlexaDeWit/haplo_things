@@ -10,16 +10,20 @@ CREATE TABLE HaploSaid (
   PRIMARY KEY ( id )
 );
 
+CREATE FUNCTION HaploSaidCreation() RETURNS TRIGGER AS '
+  BEGIN
+    NEW.created_at := current_timestamp; \
+    RETURN NEW; \
+  END: \
+' LANGUAGE 'plpgsql';
+
+
 CREATE TRIGGER HaploSaidCreated 
-AFTER INSERT ON HaploSaid
+BEFORE INSERT ON HaploSaid
 FOR EACH ROW
 EXECUTE PROCEDURE HaploSaidCreation();
-
-CREATE FUNCTION HaploSaidCreation
----     Set created_at to current_timestamp!?
-
-
 
 # --- !Downs
 
 DROP TABLE HaploSaid;
+DROP FUNCTION HaploSaidCreation();

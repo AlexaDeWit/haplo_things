@@ -25,8 +25,8 @@ object HaploSaids {
   val haploSaids = TableQuery[HaploSaids]
 
   def insert( haploSaid: HaploSaid )( implicit s: Session ){
-    haploSaids.map( s => ( s.id, s.what_said, s.context_note, s.created_at ) ).
-      forceInsert( HaploSaid.unapply( haploSaid ).get ).run
+    val tupled = HaploSaid.unapply( haploSaid ).get
+    haploSaids.map( h => ( h.what_said, h.context_note ) ) += (tupled._2, tupled._3 )
   }
 
 }
