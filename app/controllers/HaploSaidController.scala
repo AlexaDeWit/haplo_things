@@ -30,7 +30,6 @@ object HaploSaidController extends Controller {
       formWithErrors => BadRequest( html.haplo_said.index( shit_haplo_said.list, formWithErrors ) ),
       said => {
         HaploSaids.insert( said )
-        Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
       }
     )
     Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
@@ -41,7 +40,7 @@ object HaploSaidController extends Controller {
    */
   val haploSaidForm = Form(
     mapping(
-      "id" -> number,
+      "id" -> optional(number),
       "what_said" -> nonEmptyText, 
       "context_note" -> optional(text),
       "created_at" ->  jodaDate
