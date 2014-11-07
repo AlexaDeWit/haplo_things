@@ -24,4 +24,7 @@ object HaploSaidController extends Controller {
     Ok( views.html.haplo_said.index( shit_haplo_said ) )
   }
 
+  def create = DBAction { implicit rs =>
+  }
+
 }

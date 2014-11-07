@@ -7,13 +7,13 @@ import org.joda.time._
 
 //A HaploSaid table storing shit haplo says.
 class HaploSaid(tag: Tag)
-  extends Table[( Int, String, DateTime )]( tag, "HaploSaid" ){
+  extends Table[( Int, String, Option[String], DateTime )]( tag, "haplosaid" ){
 
     def id          = column[Int]( "id", O.PrimaryKey )
     def what_said   = column[String]( "what_said" )
-    def context_note= column[String]( "context_note" )
-    def created_at  = column[DateTime]("created_at")
-    def *           = ( id, what_said, created_at )
+    def context_note= column[Option[String]]( "context_note" )
+    def created_at  = column[DateTime]( "created_at" )
+    def *           = ( id, what_said, context_note, created_at )
 
 
   }
