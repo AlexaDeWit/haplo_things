@@ -6,7 +6,11 @@ import com.github.tototoshi.slick.PostgresJodaSupport._
 import org.joda.time._
 
 //A HaploSaid table storing shit haplo says.
-class HaploSaid(tag: Tag)
+
+case class HaploSaid( id: Int, what_said: String, context_note: Option[String],
+                      created_at: DateTime )
+
+class HaploSaids(tag: Tag)
   extends Table[( Int, String, Option[String], DateTime )]( tag, "haplosaid" ){
 
     def id          = column[Int]( "id", O.PrimaryKey )

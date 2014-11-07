@@ -16,12 +16,24 @@ import play.api.libs.json.Json._
 object HaploSaidController extends Controller {
 
   //query interface for things haplo says.
-  val haplo_said = TableQuery[HaploSaid]
+  val haplo_said = TableQuery[HaploSaids]
 
   def index = DBAction {  implicit rs =>
     val shit_haplo_said = haplo_said.sortBy( _.created_at.desc ).take( 15 ).list
     //replace this with pagination
     Ok( views.html.haplo_said.index( shit_haplo_said ) )
   }
+
+  /**
+   * Form for creating haplo-things
+   */
+  val haploSaidForm = Form(
+    mapping(
+      "id" -> number,
+      "what_said" -> nonEmptyText, 
+      "context_note" -> optional(text),
+      "created_at" ->  jodaDate
+    )(HaploSaid.apply)(HaploSaid.unapply)
+  )
 
 }
