@@ -26,12 +26,8 @@ object HaploSaidController extends Controller {
   }
 
   def submit = DBAction { implicit rs =>
-    val haploData = haploSaidForm.bindFromRequest.fold(
-      formWithErrors => BadRequest( html.haplo_said.index( shit_haplo_said.list, formWithErrors ) ),
-      said => {
-        HaploSaids.insert( said )
-      }
-    )
+    val haploData = haploSaidForm.bindFromRequest.get
+    haplo_said.insert( HaploSaid.unapply( haploData ).get )
     Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
   }
 
