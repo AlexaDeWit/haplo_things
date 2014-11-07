@@ -20,6 +20,15 @@ class HaploSaids(tag: Tag)
     def *           = ( id, what_said, context_note, created_at )
 
 
+}
+
+object HaploSaids {
+  val haploSaids = TableQuery[HaploSaids]
+
+  def insert( haplo_said: HaploSaid )( implicit s: Session ){
+    haploSaids.insert( haplo_said )
   }
+
+}
 
 
