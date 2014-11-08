@@ -45,7 +45,8 @@ object HaploSaidController extends Controller {
       "id" -> optional(number),
       "what_said" -> nonEmptyText, 
       "context_note" -> optional(text),
-      "created_at" ->  optional(jodaDate)
+      "created_at" ->  optional(jodaDate),
+      "who_said"   ->  default(text, "Haplo" )
     )(HaploSaid.apply)(HaploSaid.unapply _ )
   )
 

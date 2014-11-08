@@ -1,4 +1,4 @@
-@(shitHaploSaid : List[(Option[Int], String, Option[String], Option[org.joda.time.DateTime])],
+@(shitHaploSaid : List[(Option[Int], String, Option[String], Option[org.joda.time.DateTime], String)],
   haploSaidForm: Form[HaploSaid] )( implicit token: play.filters.csrf.CSRF.Token )
 
 @import helper._
@@ -12,11 +12,11 @@
       <div class="col-sm-6">
         <h1>Shit Haplo( or someone else ) Said</h1>
         @shitHaploSaid.map {
-          case ( id, what_said, context, when_said ) => {
+          case ( id, what_said, context, when_said, who_said ) => {
             <div class="panel-info">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  Haplo Said...
+                  @who_said Said...
                   <div class="pull-right">
                     @when_said.get.toDate.format("yyyy-MM-dd")
                   </div>

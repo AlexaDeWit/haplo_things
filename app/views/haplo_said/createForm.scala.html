@@ -3,8 +3,11 @@
 @import helper._
 
 @form( CSRF( routes.HaploSaidController.submit() )){
+  @helper.inputText( haploSaidForm( "who_said" ),
+  'class -> "form-control", 'placeholder -> "Haplo",
+  '_label -> "Who said it" )
   @helper.textarea( haploSaidForm( "what_said" ),
-    'class -> "form-control",  '_label -> "What he said")
+    'class -> "form-control",  '_label -> "What they said")
   @helper.inputText( haploSaidForm( "context_note" ),
     'class -> "form-control", '_label -> "Note about context")
 
