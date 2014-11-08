@@ -13,6 +13,7 @@ import play.api.Play.current
 import play.api.mvc.BodyParsers._
 import play.api.libs.json.Json
 import play.api.libs.json.Json._
+import play.filters.csrf._
 import play.filters.csrf.CSRF
 
 
@@ -24,17 +25,18 @@ object HaploSaidController extends Controller {
   def shit_haplo_said = haplo_said.sortBy( _.created_at.desc ).take( 15 )
 
   def index = DBAction {  implicit rs =>
-    val token = CSRF.getToken( rs ).get
     //replace this with pagination
-    Ok( html.haplo_said.index( shit_haplo_said.list, haploSaidForm, token ) )
+    Ok( html.haplo_said.index( shit_haplo_said.list, haploSaidForm ) )
   }
 
-  def submit = DBAction { implicit rs =>
-    val token = CSRF.getToken( rs )
-    Logger.info( rs.toString )
-    val haploData = haploSaidForm.bindFromRequest.get
-    haplo_said.insert( HaploSaid.unapply( haploData ).get )
-    Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
+  def submit = CSRFCheck {
+    DBAction { implicit rs =>
+      val token = CSRF.getToken( rs )
+      Logger.info( rs.toString )
+      val haploData = haploSaidForm.bindFromRequest.get
+      haplo_said.insert( HaploSaid.unapply( haploData ).get )
+      Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
+    }
   }
 
   /**
