@@ -29,14 +29,12 @@ object HaploSaidController extends Controller {
     Ok( html.haplo_said.index( shit_haplo_said.list, haploSaidForm ) )
   }
 
-  def submit = CSRFCheck {
-    DBAction { implicit rs =>
-      val token = CSRF.getToken( rs )
-      Logger.info( rs.toString )
-      val haploData = haploSaidForm.bindFromRequest.get
-      haplo_said.insert( HaploSaid.unapply( haploData ).get )
-      Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
-    }
+  def submit = DBAction { implicit rs =>
+    val token = CSRF.getToken( rs )
+    Logger.info( rs.toString )
+    val haploData = haploSaidForm.bindFromRequest.get
+    haplo_said.insert( HaploSaid.unapply( haploData ).get )
+    Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
   }
 
   /**
