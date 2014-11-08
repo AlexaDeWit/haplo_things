@@ -9,6 +9,7 @@ scalaVersion := "2.11.1"
 libraryDependencies ++= Seq(
   jdbc,
   anorm,
+  filters,
   cache,
   ws,
   "org.webjars" %% "webjars-play" % "2.3.0-2",
