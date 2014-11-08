@@ -12,7 +12,7 @@ case class LiftedHaploSaid( id: Column[Option[Int]], what_said: Column[String],
                             context_note: Column[Option[String]], created_at: Column[Option[DateTime]],
                             who_said: Column[String] )
 
-implicit object HaploSaidShape extends CaseClassShape( LiftedHaploSaid.tupled, HaploSaid.tupled )
+object HaploSaidShape extends CaseClassShape( LiftedHaploSaid.tupled, HaploSaid.tupled )
 
 class HaploSaids(tag: Tag)
   extends Table[HaploSaid]( tag, "shape_haploSaid" ){

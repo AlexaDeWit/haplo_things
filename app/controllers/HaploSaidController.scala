@@ -33,7 +33,7 @@ object HaploSaidController extends Controller {
     val token = CSRF.getToken( rs )
     Logger.info( rs.toString )
     val haploData = haploSaidForm.bindFromRequest.get
-    haplo_said.insert( HaploSaid.unapply( haploData ).get )
+    haplo_said.insert( haploData )
     Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
   }
 

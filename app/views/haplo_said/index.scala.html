@@ -1,4 +1,4 @@
-@(shitHaploSaid : List[(Option[Int], String, Option[String], Option[org.joda.time.DateTime], String)],
+@(shitHaploSaid : List[HaploSaid],
   haploSaidForm: Form[HaploSaid] )( implicit token: play.filters.csrf.CSRF.Token )
 
 @import helper._
