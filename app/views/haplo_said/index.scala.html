@@ -1,5 +1,6 @@
 @(shitHaploSaid : List[(Option[Int], String, Option[String], Option[org.joda.time.DateTime])],
-  haploSaidForm: Form[HaploSaid] )
+  haploSaidForm: Form[HaploSaid],
+  csrfToken: play.filters.csrf.CSRF.Token )
 
 @import helper._
 @import org.joda.time.format._
@@ -34,7 +35,7 @@
       </div>
       <div class="col-sm-4">
         <h2>Add more haplo sayings...</h2>
-        @haplo_said.createForm( haploSaidForm )
+        @haplo_said.createForm( haploSaidForm, csrfToken )
       </div>
   </div>
 }

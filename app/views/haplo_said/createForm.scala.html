@@ -1,6 +1,9 @@
-@(haploSaidForm: Form[HaploSaid] )
+@(haploSaidForm: Form[HaploSaid] ,
+  csrfToken: play.filters.csrf.CSRF.Token )
 
-@helper.form( action =  routes.HaploSaidController.submit ){
+@import helper._
+
+@form( CSRF( routes.HaploSaidController.submit() )( csrfToken ) ){
   @helper.textarea( haploSaidForm( "what_said" ),
     'class -> "form-control",  '_label -> "What he said")
   @helper.inputText( haploSaidForm( "context_note" ),
