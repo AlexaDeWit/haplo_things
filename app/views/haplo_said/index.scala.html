@@ -11,25 +11,23 @@
     <div class="row">
       <div class="col-sm-6">
         <h1>Shit Haplo( or someone else ) Said</h1>
-        @shitHaploSaid.map {
-          case ( id, what_said, context, when_said, who_said ) => {
+        @shitHaploSaid.map { haploSaid =>
             <div class="panel-info">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  @who_said Said...
+                  @haploSaid.who_said Said...
                   <div class="pull-right">
-                    @when_said.get.toDate.format("yyyy-MM-dd")
+                    @haploSaid.created_at.get.toDate.format("yyyy-MM-dd")
                   </div>
                 </h3>
               </div>
               <div class="panel-body">
-                @what_said
+                @haploSaid.what_said
               </div>
               <div class="panel-body">
-                <strong>Note:  </strong>@context
+                <strong>Note:  </strong>@haploSaid.context_note
               </div>
             </div>
-          }
         }
       </div>
       <div class="col-sm-4">

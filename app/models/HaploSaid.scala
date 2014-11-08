@@ -8,21 +8,16 @@ import org.joda.time._
 
 case class HaploSaid( id: Option[Int], what_said: String, context_note: Option[String],
                       created_at: Option[DateTime], who_said: String )
-case class LiftedHaploSaid( id: Column[Option[Int]], what_said: Column[String],
-                            context_note: Column[Option[String]], created_at: Column[Option[DateTime]],
-                            who_said: Column[String] )
-
-object HaploSaidShape extends CaseClassShape( LiftedHaploSaid.tupled, HaploSaid.tupled )
 
 class HaploSaids(tag: Tag)
-  extends Table[HaploSaid]( tag, "shape_haploSaid" ){
+  extends Table[HaploSaid]( tag, "haplosaid" ){
 
     def id          = column[Option[Int]]( "id", O.PrimaryKey, O.AutoInc )
     def what_said   = column[String]( "what_said" )
     def context_note= column[Option[String]]( "context_note" )
     def created_at  = column[Option[DateTime]]( "created_at" )
     def who_said    = column[String]("who_said", O.Default( "Haplo" ) )
-    def * = LiftedHaploSaid( id, what_said, context_note, created_at, who_said )
+    def * =  ( id, what_said, context_note, created_at, who_said ) <> ( HaploSaid.tupled, HaploSaid.unapply )
 
 }
 
