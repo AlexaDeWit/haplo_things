@@ -14,7 +14,7 @@ CREATE FUNCTION HaploSaidCreation() RETURNS TRIGGER AS '
   BEGIN
     NEW.created_at := current_timestamp; \
     RETURN NEW; \
-  END: \
+  END; \
 ' LANGUAGE 'plpgsql';
 
 
