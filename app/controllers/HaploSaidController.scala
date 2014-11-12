@@ -43,7 +43,7 @@ object HaploSaidController extends Controller {
   val haploSaidForm = Form(
     mapping(
       "id" -> optional(number),
-      "what_said" -> nonEmptyText, 
+      "what_said" -> nonEmptyText,
       "context_note" -> optional(text),
       "created_at" ->  optional(jodaDate),
       "who_said"   ->  default(text, "Haplo" )

@@ -4,6 +4,7 @@
 @import helper._
 @import org.joda.time.format._
 @import java.util.Locale
+@import view_helpers._
 
 @main("Shit Haplo Says"){
   <div class="container">
@@ -22,7 +23,7 @@
                 </h3>
               </div>
               <div class="panel-body">
-                @haploSaid.what_said
+                @HaploHelpers.nl2br( haploSaid.what_said )
               </div>
               <div class="panel-body">
                 <strong>Note:  </strong>@haploSaid.context_note
