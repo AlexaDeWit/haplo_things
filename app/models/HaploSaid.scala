@@ -29,6 +29,14 @@ object HaploSaids {
     haploSaids.map( h => ( h.what_said, h.context_note, h.who_said ) ) += (tupled._2, tupled._3, tupled._5 )
   }
 
+  def shitHaploSaid( limit: Int )( implicit s: Session ): List[HaploSaid] = {
+    haploSaids.sortBy( _.created_at.desc ).take( limit ).list
+  }
+
+  def find( id: Int )( implicit s: Session ): HaploSaid = {
+    haploSaids.filter( _.id === id ).firstOption.get
+  }
+
 }
 
 

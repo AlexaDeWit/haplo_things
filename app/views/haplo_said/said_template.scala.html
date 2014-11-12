@@ -8,7 +8,9 @@
 <div class="panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">
-      @haploSaid.who_said Said...
+      <a href="@routes.HaploSaidController.show( haploSaid.id.get )">
+        @haploSaid.who_said Said...
+      </a>
       <div class="pull-right">
         @haploSaid.created_at.get.toDate.format("yyyy-MM-dd")
       </div>
