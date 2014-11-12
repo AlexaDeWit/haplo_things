@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.HaploSaidController.index
+GET     /                           controllers.HaploSaidController.index( page: Int ?= 1 )
 GET     /HaploSaid/:id              controllers.HaploSaidController.show( id: Int )
 POST    /                           controllers.HaploSaidController.submit
 

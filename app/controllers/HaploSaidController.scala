@@ -20,16 +20,16 @@ import play.filters.csrf.CSRF
 
 object HaploSaidController extends Controller {
 
-  def index = DBAction {  implicit rs =>
+  def index( page: Int ) = DBAction {  implicit rs =>
     //replace this with pagination
-    Ok( html.haplo_said.index( HaploSaids.shitHaploSaid( 15 ), haploSaidForm ) )
+    Ok( html.haplo_said.index( HaploSaids.shitHaploSaid(20), haploSaidForm ) )
   }
 
   def submit = DBAction { implicit rs =>
     val token = CSRF.getToken( rs )
     val haploData = haploSaidForm.bindFromRequest.get
     HaploSaids.insert( haploData )
-    Redirect( routes.HaploSaidController.index ).flashing("success" -> "Saved!" )
+    Redirect( routes.HaploSaidController.index(1) ).flashing("success" -> "Saved!" )
   }
 
   def show( id: Int ) = DBAction { implicit rs =>

@@ -30,11 +30,23 @@ object HaploSaids {
   }
 
   def shitHaploSaid( limit: Int )( implicit s: Session ): List[HaploSaid] = {
-    haploSaids.sortBy( _.created_at.desc ).take( limit ).list
+    page( limit, 1 )
   }
 
   def find( id: Int )( implicit s: Session ): HaploSaid = {
     haploSaids.filter( _.id === id ).firstOption.get
+  }
+
+  def page( pageSize: Int, pageNum: Int )( implicit s: Session ): List[HaploSaid] = {
+    val offset = ( pageNum - 1 ) * pageSize
+    haploSaids.sortBy( _.created_at.desc ).drop( offset ).take( pageSize ).list
+  }
+
+  def more( lastIndex: Int, count: Int )(implicit s: Session): List[HaploSaid] = {
+    val lastItem = find( lastIndex )
+    val dropCount = haploSaids.sortBy( _.created_at.desc ).
+      filter( _.created_at > lastItem.created_at ).length.run
+    haploSaids.sortBy( _.created_at.desc ).drop( dropCount ).take( count ).list
   }
 
 }
