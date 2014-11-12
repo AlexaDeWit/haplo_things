@@ -1,0 +1,13 @@
+@( haploSaid: HaploSaid )
+
+@import helper._
+
+@main( "Shit Haplo Says" ){
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        @haplo_said.said_template( haploSaid )
+      </div>
+    </div>
+  </div>
+}

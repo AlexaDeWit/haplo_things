@@ -1,0 +1,24 @@
+@( haploSaid : HaploSaid )
+
+@import helper._
+@import org.joda.time.format._
+@import java.util.Locale
+@import view_helpers._
+
+<div class="panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      @haploSaid.who_said Said...
+      <div class="pull-right">
+        @haploSaid.created_at.get.toDate.format("yyyy-MM-dd")
+      </div>
+    </h3>
+  </div>
+  <div class="panel-body">
+    @HaploHelpers.nl2br( haploSaid.what_said )
+  </div>
+  <div class="panel-body">
+    <strong>Note:  </strong>@haploSaid.context_note
+  </div>
+</div>
+
