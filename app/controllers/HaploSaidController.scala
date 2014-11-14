@@ -22,18 +22,20 @@ object HaploSaidController extends Controller {
 
   def index( page: Int ) = DBAction {  implicit rs =>
     //replace this with pagination
-    Ok( html.haplo_said.index( HaploSaids.shitHaploSaid(20), haploSaidForm ) )
+    val shitHaploSaid = (new HaploSaidRepository).take( 20 )
+    Ok( html.haplo_said.index( shitHaploSaid, haploSaidForm ) )
   }
 
   def submit = DBAction { implicit rs =>
     val token = CSRF.getToken( rs )
     val haploData = haploSaidForm.bindFromRequest.get
-    HaploSaids.insert( haploData )
+    (new HaploSaidRepository).insert( haploData )
     Redirect( routes.HaploSaidController.index(1) ).flashing("success" -> "Saved!" )
   }
 
   def show( id: Int ) = DBAction { implicit rs =>
-    Ok( html.haplo_said.show( HaploSaids.find( id ) ) )
+    val haploSaid = (new HaploSaidRepository).find( id )
+    Ok( html.haplo_said.show( haploSaid ) )
   }
 
   /**
@@ -41,7 +43,7 @@ object HaploSaidController extends Controller {
    */
   val haploSaidForm = Form(
     mapping(
-      "id" -> optional(number),
+      "id" -> ignored(0),
       "what_said" -> nonEmptyText,
       "context_note" -> optional(text),
       "created_at" ->  optional(jodaDate),
