@@ -6,6 +6,10 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.11.1"
 
+TwirlKeys.templateImports ++= Seq(
+  "haplothings.boundaries.datamodels._"
+)
+
 libraryDependencies ++= Seq(
   jdbc,
   anorm,
