@@ -4,11 +4,9 @@ import scala.slick.driver.PostgresDriver.simple._
 import com.github.tototoshi.slick.PostgresJodaSupport._
 import org.joda.time._
 import haplothings.boundaries.Repository
+import haplothings.boundaries.datamodels.HaploSaid
 
 //A HaploSaid table storing shit haplo says.
-
-case class HaploSaid( id: Int, what_said: String, context_note: Option[String],
-                      created_at: Option[DateTime], who_said: String )
 
 class HaploSaids(tag: Tag)
   extends Table[HaploSaid]( tag, "haplosaid" ){

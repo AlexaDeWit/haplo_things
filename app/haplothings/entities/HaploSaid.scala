@@ -1,4 +1,4 @@
 package haplothings.entities
 
-class HaploSaid {
+class HaploSaidEntity {
 }

@@ -1,6 +1,8 @@
+@import helper._
+@import haplothings.boundaries.datamodels.HaploSaid
+
 @(haploSaidForm: Form[HaploSaid] )( implicit token: play.filters.csrf.CSRF.Token )
 
-@import helper._
 
 @form( CSRF( routes.HaploSaidController.submit() )){
   @helper.inputText( haploSaidForm( "who_said" ),

@@ -2,18 +2,15 @@ package haplothings.interactors
 
 import haplothings.boundaries._
 import haplothings.boundaries.requests._
-import haplothings.entities.HaploSaid
+import haplothings.entities.HaploSaidEntity
 
 
-class CreateHaploSaid( request: CreateHaploSaidRequest ) extends RequestBoundary {
+abstract class CreateHaploSaid( request: CreateHaploSaidRequest ) {
 
   val requestObj = request
 
-  def getResponse = {
-  }
-
-  def validateRequest = {
-  }
+  def getResponse
+  def validateRequest
 
 
 }

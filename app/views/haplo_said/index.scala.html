@@ -1,7 +1,9 @@
+@import helper._
+@import haplothings.boundaries.datamodels.HaploSaid
+
 @(shitHaploSaid : List[HaploSaid],
   haploSaidForm: Form[HaploSaid] )( implicit token: play.filters.csrf.CSRF.Token )
 
-@import helper._
 
 @main("Shit Haplo Says"){
   <div class="container">
